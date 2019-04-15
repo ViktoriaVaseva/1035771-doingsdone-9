@@ -89,8 +89,7 @@ $tasks = [
                             <span class="main-navigation__list-item-count">0</span>
                         </li>
 
-
-                        <?php endforeach; ?>
+                        <?php endforeach;?>
                     </ul>
                 </nav>
 
