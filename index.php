@@ -75,7 +75,16 @@ $tasks = [
                 </div>
             </div>
         </header>
-
+ <?php function table_tasks($list_tasks, $category_projects)  {
+            $number=0;
+            foreach ($list_tasks as $value) {
+                if ($value['category']==$category_projects) {
+                    $number++;
+                }
+            }
+            return $number;
+        };
+ ?>
         <div class="content">
             <section class="content__side">
                 <h2 class="content__side-heading">Проекты</h2>
@@ -83,12 +92,10 @@ $tasks = [
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
                         <?php foreach ($projects as $key=>$val): ?>
-
-                        <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#"><?=$val;?></a>
-                            <span class="main-navigation__list-item-count">0</span>
+                        <li class="main-navigation__list-item" >
+                            <a class="main-navigation__list-item-link" href = "#" ><?=$val;?></a >
+                            <span class="main-navigation__list-item-count" ><?=table_tasks($tasks, $val);?></span >
                         </li>
-
                         <?php endforeach;?>
                     </ul>
                 </nav>
