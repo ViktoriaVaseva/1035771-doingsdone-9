@@ -41,6 +41,16 @@ $tasks = [
     ]
 ];
 
+function table_tasks($list_tasks, $category_projects)
+{
+    $number = 0;
+    foreach ($list_tasks as $value) {
+        if ($value['category'] == $category_projects) {
+            $number++;
+        }
+    }
+    return $number;
+};
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -75,16 +85,7 @@ $tasks = [
                 </div>
             </div>
         </header>
- <?php function table_tasks($list_tasks, $category_projects)  {
-            $number=0;
-            foreach ($list_tasks as $value) {
-                if ($value['category']==$category_projects) {
-                    $number++;
-                }
-            }
-            return $number;
-        };
- ?>
+
         <div class="content">
             <section class="content__side">
                 <h2 class="content__side-heading">Проекты</h2>
