@@ -1,4 +1,4 @@
-
+CREATE DATABASE daily_plan;
 USE daily_plan;
 CREATE TABLE user (
 id                 INT AUTO_INCREMENT PRIMARY KEY,
