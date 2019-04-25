@@ -24,37 +24,33 @@
 
 <table class="tasks">
     <?php foreach ($tasks as $key => $val): ?>
-
-        <tr class="tasks__item task <?php echo rest_hours($val['date'])<=24 ? '' : 'task--important';?>">
+        <?php if ($val['status']==false): ?>
+        <tr class="tasks__item task <?php echo rest_hours($val['deadline'])<=24 ? '' : 'task--important';?>">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
                     <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                    <span class="checkbox__text"><?=htmlspecialchars($val['task']);?></span>
-
+                    <span class="checkbox__text"><?=htmlspecialchars($val['title']);?></span>
                 </label>
             </td>
-
             <td class="task__file">
                 <a class="download-link" href="#">Home.psd</a>
             </td>
-
-            <td class="task__date"><?=$val['date'];?></td>
-
+            <td class="task__date"><?=$val['deadline'];?></td>
         </tr>
-        <?php if ($val['is_done']==true && $show_complete_tasks == 1): ?>
+        <?php endif; ?>
+        <?php if ($val['status']==true && $show_complete_tasks == 1): ?>
             <tr class="tasks__item task task--completed">
                 <td class="task__select">
                     <label class="checkbox task__checkbox">
                         <input class="checkbox__input visually-hidden" type="checkbox" checked >
 
-                        <span class="checkbox__text"><?=$val['task'];?></span>
+                        <span class="checkbox__text"><?=$val['title'];?></span>
                     </label>
                 </td>
-                <td class="task__date"><?=$val['date'];?></td>
-                <td class="task__controls"></td>
+                <td class="task__file"></td>
+                <td class="task__date"><?=$val['deadline'];?></td>
+<!--                <td class="task__controls"></td>-->
             </tr>
-
-
         <?php endif; ?>
     <?php endforeach; ?>
     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
