@@ -1,27 +1,34 @@
-INSERT INTO user SET user_name='Виктория', email='viktoria.vaseva@gmail.com', password='123456', registration_date ='10.04.2019';
-INSERT INTO user SET user_name='Артём', email='artem@gmail.com', password='', registration_date ='10.04.2019';
-INSERT INTO user SET user_name='Владислав', email='vladislav@gmail.com', password='12345678', registration_date ='10.04.2019';
+USE daily_plan;
+INSERT INTO user (user_name, email, password, registration_date)
+VALUES ('Виктория', 'viktoria.vaseva@gmail.com', '123456', '2019-04-10 00:00:00'),
+       ('Артём', 'artem@gmail.com', '', '2019-04-10 00:00:00'),
+       ('Владислав', 'vladislav@gmail.com', '12345678', '2019-04-10 00:00:00');
+INSERT INTO project (category, user_id)
+VALUES ('Работа', 1),
+       ('Входящие', 1),
+       ('Учёба', 1),
+       ('Домашние дела', 1),
+       ('Авто', 1);
 
-INSERT INTO project SET category='Работа', user_id=1;
-INSERT INTO project SET category='Входящие', user_id=1;
-INSERT INTO project SET category='Учёба', user_id=1;
-INSERT INTO project SET category='Домашние дела', user_id=1;
-INSERT INTO project SET category='Авто', user_id=1;
-
-INSERT INTO task SET title='Собеседование в IT компании', user_id=1, dt_add='14.04.2019', status='0', url_file='https://disk.yandex.ru/client/disk', deadline='23.04.2019', project_id=1;
-INSERT INTO task SET title='Выполнить тестовое задание', user_id=1, dt_add='14.04.2019', status='0', url_file='https://disk.yandex.ru/client/disk', deadline='25.12.2018', project_id=1;
-INSERT INTO task SET title='Сделать задание первого раздела', user_id=1, dt_add='14.04.2019', status='1', url_file='https://disk.yandex.ru/client/disk', deadline='21.12.2018', project_id=3;
-INSERT INTO task SET title='Встреча с другом', user_id=1, dt_add='14.04.2019', status='0', url_file='https://disk.yandex.ru/client/disk', deadline='22.12.2018', project_id=2;
-INSERT INTO task SET title='Купить корм для кота', user_id=1, dt_add='14.04.2019', status='0', url_file='https://disk.yandex.ru/client/disk', deadline='Нет', project_id=4;
-INSERT INTO task SET title='Заказать пиццу', user_id=1, dt_add='14.04.2019', status='0', url_file='https://disk.yandex.ru/client/disk', deadline='Нет', project_id=4;
+INSERT INTO task (title, user_id, dt_add, status, url_file, deadline, project_id)
+VALUES ('Собеседование в IT компании', 1, '2019-04-21 00:00:00', '0', 'https://disk.yandex.ru/client/disk',
+        '2019-06-30 00:00:00', 1),
+       ('Выполнить тестовое задание', 1, '2019-04-21 00:00:00', '0', 'https://disk.yandex.ru/client/disk',
+        '2018-12-25 00:00:00', 1),
+       ('Сделать задание первого раздела', 1, '2019-04-21 00:00:00', '1', 'https://disk.yandex.ru/client/disk',
+        '2018-12-25 00:00:00', 3),
+       ('Встреча с другом', 1, '2019-04-21 00:00:00', '0', 'https://disk.yandex.ru/client/disk', '2018-12-22 00:00:00',
+        2),
+       ('Купить корм для кота', 1, '2019-04-21 00:00:00', '0', 'https://disk.yandex.ru/client/disk', NULL, 4),
+       ('Заказать пиццу', 1, '2019-04-21 00:00:00', '0', 'https://disk.yandex.ru/client/disk', NULL, 4);
 
 /*получить список из всех проектов для одного пользователя*/
-SELECT category FROM project WHERE user_id=1;
+SELECT category FROM project WHERE user_id = 1;
 /* Объедините проекты с задачами, чтобы посчитать количество задач в каждом проекте*/
 SELECT title, category FROM project p JOIN task t ON p.id = t.project_id;
 /*получить список из всех задач для одного проекта*/
-SELECT title FROM task WHERE project_id=1;
+SELECT title FROM task WHERE project_id = 1;
 /*пометить задачу как выполненную*/
-UPDATE task SET status='1' WHERE title='Купить корм для кота';
+UPDATE task SET status='1' WHERE title = 'Купить корм для кота';
 /*обновить название задачи по её идентификатору*/
-UPDATE task SET title='Заказать огромный торт' WHERE id=6;
+UPDATE task SET title='Заказать огромный торт' WHERE id = 6;

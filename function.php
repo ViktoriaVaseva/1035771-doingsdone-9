@@ -3,7 +3,7 @@ function table_tasks($list_tasks, $category_projects)
 {
     $number = 0;
     foreach ($list_tasks as $value) {
-        if ($value['category'] == $category_projects) {
+        if ($value['project_id'] == $category_projects) {
             $number++;
         }
     }
@@ -12,15 +12,6 @@ function table_tasks($list_tasks, $category_projects)
 
 date_default_timezone_set('Europe/Moscow');
 setlocale(LC_ALL, 'ru_RU');
-
-/*function rest_hours($day) {
-    $fix_date = date_create ($day);
-    $curdate = date_create("now");
-    $diff = date_diff($curdate, $fix_date);
-    $hour_count = date_interval_format($diff,"%H");
-
-    return $hour_count;
-}*/
 
 function rest_hours($day) {
     $secs_in_hour = 3600;
@@ -32,3 +23,12 @@ function rest_hours($day) {
       }
     return $count_hour;
 };
+
+/*function rest_hours($day) {
+    $fix_date = date_create ($day);
+    $curdate = date_create("now");
+    $diff = date_diff($curdate, $fix_date);
+    $hour_count = date_interval_format($diff,"%H");
+
+    return $hour_count;
+}*/
