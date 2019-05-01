@@ -40,10 +40,9 @@
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
                         <?php foreach ($projects as $key=>$val): ?>
-                            <li class="main-navigation__list-item" >
-                                <a class="main-navigation__list-item-link" href = "#" ><?=htmlspecialchars($val['category']);?></a >
-                                <span class="main-navigation__list-item-count" ><?=table_tasks($tasks, $val['id']);?></span >
-
+                            <li class="main-navigation__list-item <?php echo $_GET['project']==$val['id']?'main-navigation__list-item--active':'';?>">
+                                <a class="main-navigation__list-item-link" href ="?project=<?= $val['id']; ?>"><?=htmlspecialchars($val['category']);?></a>
+                                <span class="main-navigation__list-item-count"><?=table_tasks($tasks, $val['id']);?></span >
                             </li>
                         <?php endforeach;?>
                     </ul>

@@ -23,12 +23,3 @@ function rest_hours($day) {
       }
     return $count_hour;
 };
-
-/*function rest_hours($day) {
-    $fix_date = date_create ($day);
-    $curdate = date_create("now");
-    $diff = date_diff($curdate, $fix_date);
-    $hour_count = date_interval_format($diff,"%H");
-
-    return $hour_count;
-}*/
