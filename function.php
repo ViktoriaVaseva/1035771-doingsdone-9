@@ -23,3 +23,13 @@ function rest_hours($day) {
       }
     return $count_hour;
 };
+
+function get_mysql_selection_result ($con, $sql) {
+    $result = mysqli_query($con, $sql);
+    if(!$result) {
+        $error = mysqli_error($con);
+        print ("Ошибка MySQL: " . $error);
+    } else {
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+}
