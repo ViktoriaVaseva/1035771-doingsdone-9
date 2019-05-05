@@ -24,11 +24,12 @@ function rest_hours($day) {
     return $count_hour;
 };
 
-/*function rest_hours($day) {
-    $fix_date = date_create ($day);
-    $curdate = date_create("now");
-    $diff = date_diff($curdate, $fix_date);
-    $hour_count = date_interval_format($diff,"%H");
-
-    return $hour_count;
-}*/
+function get_mysql_selection_result ($con, $sql) {
+    $result = mysqli_query($con, $sql);
+    if(!$result) {
+        $error = mysqli_error($con);
+        print ("Ошибка MySQL: " . $error);
+    } else {
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+}
