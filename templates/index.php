@@ -31,9 +31,13 @@
                     <span class="checkbox__text"><?=htmlspecialchars($val['title']);?></span>
                 </label>
             </td>
+
             <td class="task__file">
-                <a class="download-link" href="#">Home.psd</a>
+                <?php if (isset($val['url_file'])): ?>
+                    <a class="download-link" href="<?=$val['url_file'];?>" download >Home.psd</a>
+                <?php endif; ?>
             </td>
+
             <td class="task__date"><?=$val['deadline'];?></td>
         </tr>
         <?php endif; ?>

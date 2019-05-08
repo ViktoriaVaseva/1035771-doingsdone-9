@@ -3,9 +3,7 @@
 require_once('data.php');
 require_once('function.php');
 require_once("helpers.php");
-
-$con = mysqli_connect('localhost', 'root', '', 'daily_plan');
-mysqli_set_charset($con, 'utf8');
+require_once('connection.php');
 
 $sql = "SELECT * FROM project WHERE user_id='$user_id'";
 $sql_task = "SELECT * FROM task WHERE user_id='$user_id'";
@@ -30,7 +28,7 @@ if (isset ($_GET['project'])) {
 }
 $row_task = get_mysql_selection_result($con, $sql_task);
 
-$page_content = include_template('index.php', ['tasks'=>$row_task, 'show_complete_tasks'=>$show_complete_tasks]);
+$page_content = include_template('index.php',['tasks'=>$row_task,'show_complete_tasks'=>$show_complete_tasks]);
 $layout_content = include_template ('layout.php', ['user_name'=> 'Виктория','content'=>$page_content,
     'title'=>'Дела в порядке', 'tasks'=>$row_task, 'projects'=>$row]);
 print($layout_content);

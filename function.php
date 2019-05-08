@@ -33,3 +33,12 @@ function get_mysql_selection_result ($con, $sql) {
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 }
+
+function db_insert_data($link, $sql, $data = []) {
+    $stmt = db_get_prepare_stmt($link, $sql, $data);
+    $result = mysqli_stmt_execute($stmt);
+    if ($result) {
+        $result = mysqli_insert_id($link);
+    }
+    return $result;
+}
