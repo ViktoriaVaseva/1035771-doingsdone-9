@@ -18,9 +18,9 @@ function rest_hours($day) {
     $fix_date = strtotime($day);
     $curdate = time();
     $count_diff = $curdate - $fix_date;
-      if ($fix_date > 0) {
-          $count_hour = $count_diff / $secs_in_hour;
-      }
+    if ($fix_date != 0) {
+        $count_hour = $count_diff / $secs_in_hour;
+    }
     return $count_hour;
 };
 

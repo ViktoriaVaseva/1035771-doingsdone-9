@@ -40,7 +40,7 @@
             <label class="form__label" for="file">Файл</label>
 
             <div class="form__input-file">
-              <input class="visually-hidden" type="file" name="file" id="file" value="<?=$_FILES['file'];?>">
+              <input class="visually-hidden" type="file" name="file" id="file" value="">
 
               <label class="button button--transparent" for="file">
                 <span>Выберите файл</span>
