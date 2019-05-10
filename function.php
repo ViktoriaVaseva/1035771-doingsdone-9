@@ -17,12 +17,21 @@ function rest_hours($day) {
     $secs_in_hour = 3600;
     $fix_date = strtotime($day);
     $curdate = time();
-    $count_diff = $curdate - $fix_date;
-    if ($fix_date != 0) {
-        $count_hour = $count_diff / $secs_in_hour;
-    }
+    $count_diff = $fix_date - $curdate;
+    $count_hour = floor($count_diff / $secs_in_hour);
+
     return $count_hour;
 };
+
+/*function rest_hours($day) {
+
+        $cur_time = date_create("now");
+        $deadline = date_create($day);
+        $dt_diff = date_diff($cur_time, $deadline);
+        $hours_count = date_interval_format($dt_diff, "%a");
+        return $hours_count;
+}*/
+
 
 function get_mysql_selection_result ($con, $sql) {
     $result = mysqli_query($con, $sql);

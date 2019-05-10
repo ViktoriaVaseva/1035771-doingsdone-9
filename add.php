@@ -4,8 +4,8 @@ require_once('function.php');
 require_once('helpers.php');
 require_once('connection.php');
 
-$sql = "SELECT * FROM project WHERE user_id='$user_id'";
-$sql_task = "SELECT * FROM task WHERE user_id='$user_id'";
+$sql = "SELECT * FROM project WHERE users_id='$users_id'";
+$sql_task = "SELECT * FROM task WHERE users_id='$users_id'";
 $row = get_mysql_selection_result($con, $sql);
 $row_task = get_mysql_selection_result($con, $sql_task);
 
@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $page_content = include_template('create_task.php', ['errors' => $errors, 'projects' => $row, 'post' => $_POST]);
     } else {
 
-        $sql = "INSERT INTO task (dt_add, project_id, user_id, status, title, url_file, deadline) VALUES (NOW(), ?, ?, 0, ?, ?, ?)";
-        db_insert_data($con, $sql, [$_POST['project'], $user_id, $_POST['name'], $url_file, $deadline]);
+        $sql = "INSERT INTO task (dt_add, project_id, users_id, status, title, url_file, deadline) VALUES (NOW(), ?, ?, 0, ?, ?, ?)";
+        db_insert_data($con, $sql, [$_POST['project'], $users_id, $_POST['name'], $url_file, $deadline]);
 
         header("Location: index.php");
 
