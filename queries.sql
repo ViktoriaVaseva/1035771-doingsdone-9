@@ -1,16 +1,16 @@
 USE daily_plan;
-INSERT INTO user (user_name, email, password, registration_date)
+INSERT INTO users (user_name, email, password, registration_date)
 VALUES ('Виктория', 'viktoria.vaseva@gmail.com', '123456', '2019-04-10 00:00:00'),
        ('Артём', 'artem@gmail.com', '', '2019-04-10 00:00:00'),
        ('Владислав', 'vladislav@gmail.com', '12345678', '2019-04-10 00:00:00');
-INSERT INTO project (category, user_id)
+INSERT INTO project (category, users_id)
 VALUES ('Работа', 1),
        ('Входящие', 1),
        ('Учёба', 1),
        ('Домашние дела', 1),
        ('Авто', 1);
 
-INSERT INTO task (title, user_id, dt_add, status, url_file, deadline, project_id)
+INSERT INTO task (title, users_id, dt_add, status, url_file, deadline, project_id)
 VALUES ('Собеседование в IT компании', 1, '2019-04-21 00:00:00', '0', 'https://disk.yandex.ru/client/disk',
         '2019-06-30 00:00:00', 1),
        ('Выполнить тестовое задание', 1, '2019-04-21 00:00:00', '0', 'https://disk.yandex.ru/client/disk',
@@ -23,7 +23,7 @@ VALUES ('Собеседование в IT компании', 1, '2019-04-21 00:0
        ('Заказать пиццу', 1, '2019-04-21 00:00:00', '0', 'https://disk.yandex.ru/client/disk', NULL, 4);
 
 /*получить список из всех проектов для одного пользователя*/
-SELECT category FROM project WHERE user_id = 1;
+SELECT category FROM project WHERE users_id = 1;
 /* Объедините проекты с задачами, чтобы посчитать количество задач в каждом проекте*/
 SELECT title, category FROM project p JOIN task t ON p.id = t.project_id;
 /*получить список из всех задач для одного проекта*/

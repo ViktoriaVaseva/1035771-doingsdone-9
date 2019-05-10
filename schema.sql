@@ -1,29 +1,29 @@
 CREATE DATABASE daily_plan;
 USE daily_plan;
-CREATE TABLE user
+CREATE TABLE users
 (
     id                INT AUTO_INCREMENT PRIMARY KEY,
-    user_name         VARCHAR(500) NOT NULL,
-    email             VARCHAR(500) NOT NULL UNIQUE,
-    password          VARCHAR(500),
+    user_name         VARCHAR(128) NOT NULL,
+    email             VARCHAR(64) NOT NULL UNIQUE,
+    password          VARCHAR(128),
     registration_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE project
 (
     id       INT AUTO_INCREMENT PRIMARY KEY,
-    category VARCHAR(500),
-    user_id  INT
+    category VARCHAR(128),
+    users_id  INT
 );
 
 CREATE TABLE task
 (
     id         INT AUTO_INCREMENT PRIMARY KEY,
-    title      VARCHAR(500),
+    title      VARCHAR(255),
     dt_add     DATETIME DEFAULT CURRENT_TIMESTAMP,
     status     INT,
     url_file   VARCHAR(500),
     deadline   DATE,
-    user_id    INT,
+    users_id    INT,
     project_id INT
 );

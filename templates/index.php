@@ -22,18 +22,23 @@
 </div>
 
 <table class="tasks">
-    <?php foreach ($tasks as $key=>$val): ?>
+    <?php foreach ($tasks as $val): ?>
         <?php if ($val['status']==false): ?>
-        <tr class="tasks__item task <?php echo rest_hours($val['deadline'])<=24 ? '' : 'task--important';?>">
+        <tr class="tasks__item task <?=($val['deadline'] != "" && rest_hours($val['deadline'])<24) ? "task--important":"";?>">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
                     <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
                     <span class="checkbox__text"><?=htmlspecialchars($val['title']);?></span>
                 </label>
             </td>
+
             <td class="task__file">
-                <a class="download-link" href="#">Home.psd</a>
+                <?php if (isset($val['url_file']) && $val['url_file']!=='/uploads/'): ?>
+                    <a class="download-link" href="<?=$val['url_file'];?>" download ><?=str_replace("/uploads/","",$val['url_file']);?></a>
+                <?php endif; ?>
+
             </td>
+
             <td class="task__date"><?=$val['deadline'];?></td>
         </tr>
         <?php endif; ?>

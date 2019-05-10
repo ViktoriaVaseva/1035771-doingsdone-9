@@ -3,14 +3,12 @@
 require_once('data.php');
 require_once('function.php');
 require_once("helpers.php");
+require_once('connection.php');
 
-$con = mysqli_connect('localhost', 'root', '', 'daily_plan');
-mysqli_set_charset($con, 'utf8');
-
-$sql = "SELECT * FROM project WHERE user_id='$user_id'";
-$sql_task = "SELECT * FROM task WHERE user_id='$user_id'";
+$sql = "SELECT * FROM project WHERE users_id='$users_id'";
+$sql_task = "SELECT * FROM task WHERE users_id='$users_id'";
 $row = get_mysql_selection_result($con, $sql);
-$row_task = get_mysql_selection_result($con, $sql_task);
+$all_tasks = get_mysql_selection_result($con, $sql_task);
 
 if (isset ($_GET['project'])) {
     $params=intval($_GET['project']);
@@ -26,12 +24,12 @@ if (isset ($_GET['project'])) {
         header("Location: pages/404.html");
         exit();
     }
-    $sql_task = "SELECT id, title, dt_add, status, url_file, deadline, project_id, user_id FROM task WHERE project_id = $params";
+    $sql_task .= "AND project_id = $params";
 }
-$row_task = get_mysql_selection_result($con, $sql_task);
+$row_tasks = get_mysql_selection_result($con, $sql_task);
 
-$page_content = include_template('index.php', ['tasks'=>$row_task, 'show_complete_tasks'=>$show_complete_tasks]);
+$page_content = include_template('index.php',['tasks'=>$row_tasks,'show_complete_tasks'=>$show_complete_tasks]);
 $layout_content = include_template ('layout.php', ['user_name'=> 'Виктория','content'=>$page_content,
-    'title'=>'Дела в порядке', 'tasks'=>$row_task, 'projects'=>$row]);
+    'title'=>'Дела в порядке', 'tasks'=>$all_tasks, 'projects'=>$row]);
 print($layout_content);
 ?>
