@@ -10,11 +10,9 @@ session_start();
 
 if (isset($_SESSION)) {
 
-    $email = $_SESSION['email'];
 
-    $sql_from_session = "SELECT id FROM users WHERE email = '$email'";
-    $res_session = mysqli_query($con, $sql_from_session);
-    $users_id = mysqli_fetch_all($res_session, MYSQLI_ASSOC)[0]['id'];
+    $users_id = $_SESSION['user']['id'];
+    $user_name = $_SESSION['user']['user_name'];
 
     $sql = "SELECT * FROM project WHERE users_id='$users_id'";
     $sql_task = "SELECT * FROM task WHERE users_id='$users_id'";
