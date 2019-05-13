@@ -1,6 +1,7 @@
 <?php
 require_once('connection.php');
 require_once('helpers.php');
+require_once('function.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

@@ -1,13 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
     <meta charset="UTF-8">
-    <title><?= $title; ?></title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/flatpickr.min.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -15,48 +13,66 @@
 
 <div class="page-wrapper">
     <div class="container container--with-sidebar">
+
         <header class="main-header">
-            <a href="/">
-                <img src="img/logo.png" width="153" height="42" alt="Логотип Дела в порядке">
+            <a href="templates/guest.php">
+                <img src="../img/logo.png" width="153" height="42" alt="Логитип Дела в порядке">
             </a>
 
             <div class="main-header__side">
-                <a class="main-header__side-item button button--plus open-modal" href="add.php">Добавить задачу</a>
-
-                <div class="main-header__side-item user-menu">
-                    <div class="user-menu__data">
-                        <p><?= $user_name ;?></p>
-
-                        <a href="logout.php">Выйти</a>
-                    </div>
-                </div>
+                <a class="main-header__side-item button button--transparent" href="auth.php">Войти</a>
             </div>
-
         </header>
 
         <div class="content">
+
             <section class="content__side">
-                <h2 class="content__side-heading">Проекты</h2>
+                <p class="content__side-info">Если у вас уже есть аккаунт, авторизуйтесь на сайте</p>
 
-                <nav class="main-navigation">
-                    <ul class="main-navigation__list">
-                        <?php foreach ($projects as $key=>$val): ?>
-                            <li class="main-navigation__list-item <?php echo $_GET['project']==$val['id']?'main-navigation__list-item--active':'';?>">
-                                <a class="main-navigation__list-item-link" href ="?project=<?= $val['id']; ?>"><?=htmlspecialchars($val['category']);?></a>
-                                <span class="main-navigation__list-item-count"><?=table_tasks($tasks, $val['id']);?></span >
-                            </li>
-                        <?php endforeach;?>
-                    </ul>
-                </nav>
-
-                <a class="button button--transparent button--plus content__side-button"
-                   href="pages/form-project.html" target="project_add">Добавить проект</a>
+                <a class="button button--transparent content__side-button" href="auth.php">Войти</a>
             </section>
 
             <main class="content__main">
-               <?=$content;?>
+                <h2 class="content__main-heading">Вход на сайт</h2>
+
+                <form class="form" action="auth.php" method="post" autocomplete="off" enctype="multipart/form-data">
+                    <div class="form__row">
+                        <label class="form__label" for="email">E-mail <sup>*</sup></label>
+
+                        <input class="form__input <?=(isset($errors[$val]) || isset($errors['email']))? "form__input--error" : "";?>" type="text" name="email" id="email" value="" placeholder="Введите e-mail">
+
+                        <?php if (isset($errors['email'])): ?>
+                            <p class="form__message"><?=$errors['email'];?></p>
+                        <?php endif;?>
+                        <?php if (isset($errors[$val])): ?>
+                            <p class="form__message"><?=$errors[$val];?></p>
+                        <?php endif;?>
+                    </div>
+
+                    <div class="form__row">
+                        <label class="form__label" for="password">Пароль <sup>*</sup></label>
+
+                        <input class="form__input <?=(isset($errors[$val]) || isset($errors['password'])) ? "form__input--error" : "";?>" type="password" name="password" id="password" value="" placeholder="Введите пароль">
+                        <?php if (isset($errors[$val])): ?>
+                            <p class="form__message"><?=$errors[$val];?></p>
+                        <?php endif;?>
+                        <?php if (isset($errors['password'])): ?>
+                            <p class="form__message"><?=$errors['password'];?></p>
+                        <?php endif;?>
+                    </div>
+
+                    <div class="form__row form__row--controls">
+                        <?php if (isset($errors)): ?>
+                            <p class="error-message">Пожалуйста, исправьте ошибки в форме</p>
+                        <?php endif; ?>
+                        <input class="button" type="submit" name="" value="Войти">
+                    </div>
+                </form>
+
             </main>
+
         </div>
+
     </div>
 </div>
 
@@ -67,8 +83,6 @@
 
             <p>Веб-приложение для удобного ведения списка дел.</p>
         </div>
-
-        <a class="main-footer__button button button--plus" href="add.php">Добавить задачу</a>
 
         <div class="main-footer__social social">
             <span class="visually-hidden">Мы в соцсетях:</span>
@@ -113,13 +127,12 @@
             <span class="visually-hidden">Разработано:</span>
 
             <a href="https://htmlacademy.ru/intensive/php">
-                <img src="img/htmlacademy.svg" alt="HTML Academy" width="118" height="40">
+                <img src="../img/htmlacademy.svg" alt="HTML Academy" width="118" height="40">
             </a>
         </div>
     </div>
 </footer>
 
-<script src="flatpickr.js"></script>
-<script src="script.js"></script>
 </body>
 </html>
+

@@ -1,4 +1,3 @@
-
 <h2 class="content__main-heading">Список задач</h2>
 <form class="search-form" action="index.php" method="post" autocomplete="off">
     <input class="search-form__input" type="text" name="" value="" placeholder="Поиск по задачам">
@@ -59,4 +58,3 @@
     <?php endforeach; ?>
     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
 </table>
-

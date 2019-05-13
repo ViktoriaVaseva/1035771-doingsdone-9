@@ -23,16 +23,6 @@ function rest_hours($day) {
     return $count_hour;
 };
 
-/*function rest_hours($day) {
-
-        $cur_time = date_create("now");
-        $deadline = date_create($day);
-        $dt_diff = date_diff($cur_time, $deadline);
-        $hours_count = date_interval_format($dt_diff, "%a");
-        return $hours_count;
-}*/
-
-
 function get_mysql_selection_result ($con, $sql) {
     $result = mysqli_query($con, $sql);
     if(!$result) {
