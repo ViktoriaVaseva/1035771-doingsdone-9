@@ -7,9 +7,7 @@ require_once('connection.php');
 
 session_start();
 
-
 if (isset($_SESSION)) {
-
 
     $users_id = $_SESSION['user']['id'];
     $user_name = $_SESSION['user']['user_name'];
@@ -18,7 +16,6 @@ if (isset($_SESSION)) {
     $sql_task = "SELECT * FROM task WHERE users_id='$users_id'";
     $row = get_mysql_selection_result($con, $sql);
     $all_tasks = get_mysql_selection_result($con, $sql_task);
-
 
     if (isset ($_GET['project'])) {
         $params = intval($_GET['project']);
@@ -36,6 +33,18 @@ if (isset($_SESSION)) {
         }
 
         $sql_task .= " AND project_id = $params";
+    }
+
+    $status = 0;
+    if (isset($_GET["task_id"])) {
+        $id_task = $_GET["task_id"];
+
+        $status = 1;
+
+        $sql_task_status = "UPDATE task SET status = ? WHERE id = ?";
+        db_insert_data($con, $sql_task_status, [$status, $id_task]);
+
+        header("Location: index.php");
     }
 
     $row_tasks = get_mysql_selection_result($con, $sql_task);
