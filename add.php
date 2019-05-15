@@ -6,15 +6,13 @@ require_once('connection.php');
 
 session_start();
 
-
 if (isset($_SESSION)) {
-
 
     $users_id = $_SESSION['user']['id'];
     $user_name = $_SESSION['user']['user_name'];
 
     $sql = "SELECT * FROM project WHERE users_id='$users_id'";
-    $sql_task = "SELECT * FROM task WHERE users_id='$users_id'";
+    $sql_task = "SELECT id, title, dt_add, status, url_file, users_id, project_id, DATE_FORMAT(deadline, '%d.%m.%Y') deadline FROM task WHERE users_id='$users_id'";
     $row = get_mysql_selection_result($con, $sql);
     $row_task = get_mysql_selection_result($con, $sql_task);
 

@@ -7,10 +7,10 @@
 
 <div class="tasks-controls">
     <nav class="tasks-switch">
-        <a href="/" class="tasks-switch__item tasks-switch__item--active">Все задачи</a>
-        <a href="/" class="tasks-switch__item">Повестка дня</a>
-        <a href="/" class="tasks-switch__item">Завтра</a>
-        <a href="/" class="tasks-switch__item">Просроченные</a>
+        <a href="?filter=all" class="tasks-switch__item <?php echo $_GET['filter'] === "all" ? 'tasks-switch__item--active' : '' ;?>">Все задачи</a>
+        <a href="?filter=today" class="tasks-switch__item <?php echo $_GET['filter'] === "today" ? 'tasks-switch__item--active' : '' ;?>">Повестка дня</a>
+        <a href="?filter=tomorrow" class="tasks-switch__item <?php echo $_GET['filter'] === 'tomorrow' ? 'tasks-switch__item--active' : '' ;?>">Завтра</a>
+        <a href="?filter=failed" class="tasks-switch__item <?php echo $_GET['filter'] === 'failed' ? 'tasks-switch__item--active' : '' ;?>">Просроченные</a>
     </nav>
 
     <label class="checkbox">
@@ -26,7 +26,7 @@
         <tr class="tasks__item task <?=($val['deadline'] != "" && rest_hours($val['deadline'])<24) ? "task--important":"";?>">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
-                    <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
+                    <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="<?= $val['id']; ?>" >
                     <span class="checkbox__text"><?=htmlspecialchars($val['title']);?></span>
                 </label>
             </td>

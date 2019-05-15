@@ -7,18 +7,16 @@ require_once('connection.php');
 
 session_start();
 
-
 if (isset($_SESSION)) {
-
 
     $users_id = $_SESSION['user']['id'];
     $user_name = $_SESSION['user']['user_name'];
 
     $sql = "SELECT * FROM project WHERE users_id='$users_id'";
-    $sql_task = "SELECT * FROM task WHERE users_id='$users_id'";
+    $sql_task = "SELECT id, title, dt_add, status, url_file, users_id, project_id, 
+       DATE_FORMAT(deadline, '%d.%m.%Y') deadline FROM task WHERE users_id='$users_id'";
     $row = get_mysql_selection_result($con, $sql);
     $all_tasks = get_mysql_selection_result($con, $sql_task);
-
 
     if (isset ($_GET['project'])) {
         $params = intval($_GET['project']);
@@ -36,6 +34,49 @@ if (isset($_SESSION)) {
         }
 
         $sql_task .= " AND project_id = $params";
+    }
+
+    $status = 0;
+    if (isset($_GET["task_id"])) {
+        $id_task = $_GET["task_id"];
+        $status = 1;
+
+        $sql_task_status = "UPDATE task SET status = ? WHERE id = ?";
+        db_insert_data($con, $sql_task_status, [$status, $id_task]);
+
+        header("Location: index.php");
+    }
+
+    /*$show_complete_tasks = 0;
+
+    if (isset($_GET["show_completed"])) {
+        $show_completed = $_GET["show_completed"];
+            $show_complete_tasks = 1;
+    } else {}
+    */
+
+    if (isset($_GET['filter'])) {
+
+        if ($_GET['filter'] == "today" && isset ($_GET['project'])) {
+            $current = date("d-m-Y");
+            $sql_task .= " AND deadline = $current";
+            $row_tasks= get_mysql_selection_result($con, $sql_task);
+            var_dump($row_tasks);
+        }
+
+        if ($_GET['filter'] == "tomorrow" && isset ($_GET['project'])) {
+            $today = DATE_SUB(NOW(),  1 );
+            $sql_task .= " AND deadline > $today";
+            $row_tasks = get_mysql_selection_result($con, $sql_task);
+        }
+
+        if ($_GET['filter'] == "failed" && isset ($_GET['project'])) {
+            $current = date("d-m-Y");
+            $sql_task .= " AND deadline < $current";
+            $row_tasks = get_mysql_selection_result($con, $sql_task);
+        }
+    }  else {
+        $_GET['filter'] = "all";
     }
 
     $row_tasks = get_mysql_selection_result($con, $sql_task);
