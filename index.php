@@ -36,10 +36,10 @@ if (isset($_SESSION)) {
         $sql_task .= " AND project_id = $params";
     }
 
-    $status = 0;
+
     if (isset($_GET["task_id"])) {
-        $id_task = $_GET["task_id"];
-        $status = 1;
+        $id_task = intval($_GET["task_id"]);
+        $status = intval($_GET["check"]);
 
         $sql_task_status = "UPDATE task SET status = ? WHERE id = ?";
         db_insert_data($con, $sql_task_status, [$status, $id_task]);
@@ -56,25 +56,26 @@ if (isset($_SESSION)) {
     */
 
     if (isset($_GET['filter'])) {
-
+        $current = date(Y-m-d);
         if ($_GET['filter'] == "today" && isset ($_GET['project'])) {
             $current = date("d-m-Y");
             $sql_task .= " AND deadline = $current";
-            $row_tasks= get_mysql_selection_result($con, $sql_task);
-            var_dump($row_tasks);
+
+            var_dump($sql_task);
         }
 
         if ($_GET['filter'] == "tomorrow" && isset ($_GET['project'])) {
-            $today = DATE_SUB(NOW(),  1 );
-            $sql_task .= " AND deadline > $today";
-            $row_tasks = get_mysql_selection_result($con, $sql_task);
+
+            $sql_task .= " AND deadline > $current + INTERVAL 1  DAY";
+
         }
 
         if ($_GET['filter'] == "failed" && isset ($_GET['project'])) {
             $current = date("d-m-Y");
             $sql_task .= " AND deadline < $current";
-            $row_tasks = get_mysql_selection_result($con, $sql_task);
+
         }
+        $row_tasks = get_mysql_selection_result($con, $sql_task);
     }  else {
         $_GET['filter'] = "all";
     }
