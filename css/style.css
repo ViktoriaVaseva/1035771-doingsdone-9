@@ -506,6 +506,10 @@ a:focus {
   font-weight: bold;
 }
 
+.task--none {
+  display: none;
+}
+
 .task--completed .checkbox__input + .checkbox__text {
   font-weight: normal;
   text-decoration: line-through;

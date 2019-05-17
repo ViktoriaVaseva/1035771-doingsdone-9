@@ -1,4 +1,4 @@
 <?php
 session_start();
 unset($_SESSION['user']);
-header("Location: /templates/guest.php");
+header("Location: index.php");
