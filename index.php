@@ -47,6 +47,7 @@ if (isset($_SESSION)) {
         header("Location: index.php");
     }
 
+
     /*$show_complete_tasks = 0;
 
     if (isset($_GET["show_completed"])) {
@@ -56,25 +57,30 @@ if (isset($_SESSION)) {
     */
 
     if (isset($_GET['filter'])) {
+        $current = date("Y-m-d");
+
 
         if ($_GET['filter'] == "today" && isset ($_GET['project'])) {
-            $current = date("d-m-Y");
-            $sql_task .= " AND deadline = $current";
-            $row_tasks= get_mysql_selection_result($con, $sql_task);
-            var_dump($row_tasks);
+
+            $sql_task = "SELECT title, status, url_file, users_id, project_id, 
+       DATE_FORMAT(deadline, '%d.%m.%Y') AS deadline FROM task WHERE users_id='$users_id' && deadline = $current";
+
         }
 
-        if ($_GET['filter'] == "tomorrow" && isset ($_GET['project'])) {
-            $today = DATE_SUB(NOW(),  1 );
-            $sql_task .= " AND deadline > $today";
-            $row_tasks = get_mysql_selection_result($con, $sql_task);
+       if ($_GET['filter'] == "tomorrow" && isset ($_GET['project'])) {
+
+            $sql_task = "SELECT title, status, url_file, users_id, project_id, DATE_FORMAT(deadline, '%d.%m.%Y') AS deadline FROM task WHERE users_id='$users_id' && deadline = $current+INTERVAL 1 DAY";
+
         }
 
-        if ($_GET['filter'] == "failed" && isset ($_GET['project'])) {
-            $current = date("d-m-Y");
+       if ($_GET['filter'] == "failed" && isset ($_GET['project'])) {
+
             $sql_task .= " AND deadline < $current";
-            $row_tasks = get_mysql_selection_result($con, $sql_task);
+
         }
+
+
+
     }  else {
         $_GET['filter'] = "all";
     }
