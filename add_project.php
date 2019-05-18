@@ -6,7 +6,7 @@ require_once('connection.php');
 
 session_start();
 
-if (isset($_SESSION)) {
+if (isset($_SESSION['user'])) {
 
     $users_id = $_SESSION['user']['id'];
     $user_name = $_SESSION['user']['user_name'];
