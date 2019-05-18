@@ -25,5 +25,8 @@ CREATE TABLE task
     url_file   VARCHAR(500),
     deadline   DATE,
     users_id    INT,
-    project_id INT
+    project_id INT,
+    FULLTEXT (title)
 );
+
+CREATE FULLTEXT INDEX title ON task(title)

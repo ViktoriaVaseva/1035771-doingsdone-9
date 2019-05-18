@@ -69,6 +69,11 @@ if (isset($_SESSION['user'])) {
         }
     }
 
+    if (isset($_GET['search']) && $_GET['search'] != '') {
+        $search = trim(htmlspecialchars($_GET['search']));
+        $sql_task .= "  AND MATCH (title) AGAINST('$search' IN BOOLEAN MODE)";
+    }
+
     $row_tasks = get_mysql_selection_result($con, $sql_task);
 
     $page_content = include_template('index.php', ['tasks' => $row_tasks, 'show_complete_tasks' => $show_complete_tasks, 'filter' => $filter]);
