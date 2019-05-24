@@ -11,6 +11,11 @@
 <body>
 <h1 class="visually-hidden">Дела в порядке</h1>
 
+<?php
+$email = $_POST['email'] ?? '';
+$name = $_POST['name'] ?? '';
+;?>
+
 <div class="page-wrapper">
     <div class="container container--with-sidebar">
         <header class="main-header">
@@ -37,7 +42,7 @@
                     <div class="form__row">
                         <label class="form__label" for="email">E-mail <sup>*</sup></label>
 
-                        <input class="form__input <?=(isset($errors['email']) || isset($errors[$key])) ? "form__input--error" : "";?>" type="text" name="email" id="email" value="" placeholder="Введите e-mail">
+                        <input class="form__input <?=(isset($errors['email']) || isset($errors[$key])) ? "form__input--error" : "";?>" type="text" name="email" id="email" value="<?=$email;?>" placeholder="Введите e-mail">
 
                         <?php if (isset($errors['email'])): ?>
                         <p class="form__message"><?=$errors['email'];?></p>
@@ -60,7 +65,7 @@
                     <div class="form__row">
                         <label class="form__label" for="name">Имя <sup>*</sup></label>
 
-                        <input class="form__input <?=(isset($errors['name'])) ? "form__input--error" : "";?>" type="text" name="name" id="name" value="" placeholder="Введите имя">
+                        <input class="form__input <?=(isset($errors['name'])) ? "form__input--error" : "";?>" type="text" name="name" id="name" value="<?=$name;?>" placeholder="Введите имя">
                         <?php if (isset($errors['name'])): ?>
                             <p class="form__message"><?=$errors['name'];?></p>
                         <?php endif;?>

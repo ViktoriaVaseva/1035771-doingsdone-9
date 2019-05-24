@@ -1,0 +1,15 @@
+{
+    "name": "viktoria/daily_plan",
+    "description": "Website for managing for a list of affairs",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Виктория",
+            "email": "viktoria.vaseva@gmail.com"
+        }
+    ],
+    "require": {
+        "swiftmailer/swiftmailer": "^6.2"
+    }
+}

@@ -11,6 +11,10 @@
 <body>
 <h1 class="visually-hidden">Дела в порядке</h1>
 
+<?php
+$email = $_POST['email'] ?? '';
+;?>
+
 <div class="page-wrapper">
     <div class="container container--with-sidebar">
 
@@ -39,7 +43,7 @@
                     <div class="form__row">
                         <label class="form__label" for="email">E-mail <sup>*</sup></label>
 
-                        <input class="form__input <?=(isset($errors[$val]) || isset($errors['email']))? "form__input--error" : "";?>" type="text" name="email" id="email" value="" placeholder="Введите e-mail">
+                        <input class="form__input <?=(isset($errors[$val]) || isset($errors['email']))? "form__input--error" : "";?>" type="text" name="email" id="email" value="<?=$email;?>" placeholder="Введите e-mail">
 
                         <?php if (isset($errors['email'])): ?>
                             <p class="form__message"><?=$errors['email'];?></p>
