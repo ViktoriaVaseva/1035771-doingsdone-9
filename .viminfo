@@ -1,0 +1,39 @@
+# Этот файл viminfo автоматически создан Vim 8.1.
+# Его можно (осторожно!) редактировать.
+
+# Viminfo version
+|1,4
+
+# Значение опции 'encoding' в момент записи файла
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~h
+# Командная строка, история (начиная от свежего к старому):
+
+# Строка поиска, история (начиная от свежего к старому):
+
+# Выражение, история (начиная от свежего к старому):
+
+# Строка ввода, история (начиная от свежего к старому):
+
+# Строка отладки, история (начиная от свежего к старому):
+
+# Регистры:
+
+# Глобальные отметки:
+'0  7  12  ~/Desktop/OSPanel/domains/localhost/.git/MERGE_MSG
+|4,48,7,12,1555344785,"~/Desktop/OSPanel/domains/localhost/.git/MERGE_MSG"
+
+# Список прыжков (сначала более свежие):
+-'  7  12  ~/Desktop/OSPanel/domains/localhost/.git/MERGE_MSG
+|4,39,7,12,1555344785,"~/Desktop/OSPanel/domains/localhost/.git/MERGE_MSG"
+-'  1  0  ~/Desktop/OSPanel/domains/localhost/.git/MERGE_MSG
+|4,39,1,0,1555344498,"~/Desktop/OSPanel/domains/localhost/.git/MERGE_MSG"
+
+# История местных отметок (от более свежих к старым):
+
+> ~/Desktop/OSPanel/domains/localhost/.git/MERGE_MSG
+	*	1555344781	0
+	"	7	12

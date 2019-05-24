@@ -2,6 +2,7 @@
 require_once('connection.php');
 require_once('helpers.php');
 require_once('function.php');
+require_once ("vendor/autoload.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
