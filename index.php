@@ -1,6 +1,5 @@
 <?php
 
-require_once('data.php');
 require_once('function.php');
 require_once("helpers.php");
 require_once('connection.php');
@@ -84,5 +83,3 @@ if (isset($_SESSION['user'])) {
     $layout_content = include_template('guest.php');
 }
 print($layout_content);
-
-?>
